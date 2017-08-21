@@ -1,0 +1,28 @@
+title: "Cancel a purchase"
+description: > 
+  <p>Authenticated endpoint that will cancel a purchase.</p>
+  <p>Only purchases with a status of [unconfirmed] can be cancelled.</p>
+docs_position: 4
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "13yRMtPSFC6TKxFeMH_WDA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "cancelled"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Purchase deleted
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

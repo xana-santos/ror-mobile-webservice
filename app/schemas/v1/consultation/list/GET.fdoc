@@ -1,0 +1,172 @@
+title: "List consultations"
+description: "<p>Authenticated endpoint that returns consultations.</p>"
+docs_position: 6
+requestParameters:
+  type: object
+  examples: ["limit", "offset"]
+  additionalProperties: false
+  properties:
+    limit:
+      type: ["integer", "string"]
+      minimum: 10
+      maximum: 100
+      default: 25
+      description: The number of records returned
+    offset:
+      type: ["integer", "string"]
+      default: 0
+      description: The offset of the first record returned
+    timestamp:
+      type: ["integer", "string"]
+      description: Return records created/updated after this time
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"  
+      description: "Return consultations for this trainer only"  
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"  
+      description: "Return appointments for this client only"
+    include_deleted:
+      type: ["boolean", "string"]
+      default: false  
+responseParameters:
+  type: object
+  properties:
+    consultations:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "PKpxLV2YoxKDumGAJ-ipvA"
+          chest:
+            type: number
+            example: 30.00
+          hips:
+            type: number
+            example: 30.00
+          weight:
+            type: number
+            example: 30.00
+          waist:
+            type: number
+            example: 30.00
+          lean_body_weight:
+            type: number
+            example: 30.00
+          body_fat_weight:
+            type: number
+            example: 30.00
+          measurement:
+            type: number
+            example: 130.00
+          left_arm:
+            type: number
+            example: 10.00
+          right_arm:
+            type: number
+            example: 8.00  
+          glutes:
+            type: number
+            example: 30.00
+          left_quads:
+            type: number
+            example: 30.00
+          right_quads:
+            type: number
+            example: 30.00
+          left_calf:
+            type: number
+            example: 20.00
+          right_calf:
+            type: number
+            example: 20.00        
+          total_measurement:
+            type: number
+            example: 30.00        
+          fat_percentage:
+            type: number
+            example: 20.00
+          comments:
+            type: string
+            example: "Good progress"  
+          consultation_date:
+            type: string
+            format: date
+            example: "2015-08-08"
+          consultation_time:
+            type: string
+            format: time
+            example: "15:49"
+          images:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: ykgxonIHp8IzfK8C42HsGA
+                url:
+                  type: string
+                  description: Location of the image
+                  example: "https://s3.amazonaws.com/example.jpg"
+                position:
+                  type: number
+                  description: "Image Position"
+                  example: 0
+          client:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "ofVwRSnAEdgGp88nVjrrcA"
+              first_name: 
+                type: string
+                example: Demo
+              last_name:
+                type: string
+                example: User
+              email:
+                type: string
+                example: demo@client.com
+          trainer:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "2qFTErmCZAJzMmGG9TRYsQ"
+              first_name:
+                type: string
+                example: Example
+              last_name:
+                type: string
+                example: User
+              email:
+                type: string
+                format: email
+                example: demo@trainer.com        
+    meta:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        offset:
+          type: integer
+          example: 0
+        total:
+          description: Total number of consultations (excluding limit and offsets)
+          type: integer
+          example: 1
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Accounts listed
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

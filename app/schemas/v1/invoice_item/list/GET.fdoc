@@ -1,0 +1,81 @@
+title: "List invoice items"
+description: "<p>Authenticated endpoint that returns invoice items.</p>"
+docs_position: 2
+requestParameters:
+  type: object
+  examples: ["limit", "offset"]
+  additionalProperties: false
+  properties:
+    limit:
+      type: ["integer", "string"]
+      minimum: 10
+      maximum: 100
+      default: 25
+      description: The number of records returned
+    offset:
+      type: ["integer", "string"]
+      default: 0
+      description: The offset of the first record returned
+    record_id:
+      type: string
+      example: "zQUCbyVrr0ZxNCIx9TzuyA"  
+      description: "Return invoice items for this record ID"
+    record_type:
+      type: string
+      example: "session"  
+      enum: ["client_session", "product"]
+      description: "Return invoice items for this record type only"
+    timestamp:
+      type: ["integer", "string"]
+      description: Return records created/updated after this time
+responseParameters:
+  type: object
+  properties:
+    invoice_items:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "Cp245B0RsgFNPcaApp9ZGA"
+          quantity:
+            type: number
+            example: 1  
+          subtotal:
+            type: number
+            example: 6000
+          total:
+            type: number
+            example: 6120
+          fees:
+            type: number
+            example: 120  
+          item:
+            type: string
+            example: 45 minute session
+          description:
+            type: string
+            example: "1 x 45 minute session at $60.00"
+          record:
+            type: object
+            properties:
+              type:
+                type: string
+                example: "session"
+              id:
+                type: string
+                example: "yTUXbyVyr0ZxNCHx9TzuyA"
+    meta:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        offset:
+          type: integer
+          example: 0
+        total:
+          description: Total number of appointments (excluding limit and offsets)
+          type: integer
+          example: 1

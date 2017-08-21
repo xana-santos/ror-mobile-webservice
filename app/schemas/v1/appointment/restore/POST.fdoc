@@ -1,0 +1,28 @@
+title: "Restore an appointment"
+description: > 
+  <p>Authenticated endpoint that will restore a previously deleted appointment.</p>
+  <p>You may only restore deleted appointments. If you attempt to restore an active appointment, an error will be raised.</p>
+docs_position: 5
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "fPD2c4Pn48egmJniX_wwxw"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "restored"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: appointment restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

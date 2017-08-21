@@ -1,0 +1,7 @@
+check process nginx with pidfile <%= fetch :monit_nginx_pid %>
+  start program = "/usr/sbin/service nginx start"
+  stop program = "/usr/sbin/service nginx stop"
+  if children > 250 then restart
+  if 5 restarts within 5 cycles then alert
+  if loadavg(5min) greater than 10 for 8 cycles then alert
+  if 10 restarts within 10 cycles then timeout

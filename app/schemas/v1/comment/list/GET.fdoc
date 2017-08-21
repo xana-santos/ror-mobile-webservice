@@ -1,0 +1,108 @@
+title: "List comments"
+description: "<p>Authenticated endpoint that returns comments.</p>"
+docs_position: 6
+requestParameters:
+  type: object
+  examples: ["limit", "offset"]
+  additionalProperties: false
+  properties:
+    limit:
+      type: ["integer", "string"]
+      minimum: 10
+      maximum: 100
+      default: 25
+      description: The number of records returned
+    offset:
+      type: ["integer", "string"]
+      default: 0
+      description: The offset of the first record returned
+    timestamp:
+      type: ["integer", "string"]
+      description: Return records created/updated after this time
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"  
+      description: "Return comments for this trainer only"
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"  
+      description: "Return appointments for this client only"
+    include_deleted:
+      type: ["boolean", "string"]
+      default: false  
+responseParameters:
+  type: object
+  properties:
+    comments:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "8XsrV_LCHLbGQGcTK2LDGw"
+          comment:
+            type: string
+            example: "Awesome client. 10/10 would train again."
+          comment_date:
+            type: string
+            format: date
+            example: "2015-08-08"
+          comment_time:
+            type: string
+            format: time
+            example: "15:49"
+          client:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "ofVwRSnAEdgGp88nVjrrcA"
+              first_name: 
+                type: string
+                example: Demo
+              last_name:
+                type: string
+                example: User
+              email:
+                type: string
+                example: demo@client.com
+          trainer:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "2qFTErmCZAJzMmGG9TRYsQ"
+              first_name:
+                type: string
+                example: Example
+              last_name:
+                type: string
+                example: User
+              email:
+                type: string
+                format: email
+                example: demo@trainer.com      
+    meta:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        offset:
+          type: integer
+          example: 0
+        total:
+          description: Total number of comments (excluding limit and offsets)
+          type: integer
+          example: 1
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Accounts listed
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

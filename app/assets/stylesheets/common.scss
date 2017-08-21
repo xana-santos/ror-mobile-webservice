@@ -1,0 +1,24 @@
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -3rem;
+}
+
+.content{
+  padding: 2rem 0;
+}
+
+.button{
+  text-transform: uppercase;
+}
+
+footer{
+  background-color: #323a45;
+  color: #fff;
+}
+
+footer, .push{
+  height: 3rem;
+  line-height: 3rem;
+}

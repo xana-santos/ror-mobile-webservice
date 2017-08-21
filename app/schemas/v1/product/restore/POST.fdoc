@@ -1,0 +1,28 @@
+title: "Restore a product"
+description: > 
+  <p>Authenticated endpoint that will restore a previously deleted product.</p>
+  <p>You may only restore deleted products. If you attempt to restore an active product, an error will be raised.</p>
+docs_position: 5
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "0X1kV7kuc3Nfh1U3qAHLhQ"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "restored"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: product restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,27 @@
+title: "Deactivate a client"
+description: > 
+  <p>Authenticated endpoint that will deactivate a client.</p>
+docs_position: 8
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "deactivated"  
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym deleted
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

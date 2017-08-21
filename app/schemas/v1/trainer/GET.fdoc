@@ -1,0 +1,198 @@
+title: "Retrieve a trainer"
+description: > 
+  <p>Authenticated endpoint that will retrieve a trainer's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"
+responseParameters:
+  properties:
+    id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"
+    created_at:
+      type: number
+      example: 1446203030  
+    first_name:
+      type: string
+      example: Example
+    last_name:
+      type: string
+      example: User
+    email:
+      type: string
+      format: email
+      example: demo@trainer.com 
+    password:
+      type: string
+      example: "password"
+    password_confirmation:
+      type: string
+      example: "password"     
+    mobile:
+      type: string
+      example: "0400000000"
+    office:
+      type: string
+      example: "12345678"
+    phone:
+      type: string
+      example: "12345678"
+    abn:
+      type: string
+      example: "12345678910"
+    birthdate:
+      type: string
+      format: date
+      example: "1985-12-25"
+    gst:
+      type: boolean
+      example: true  
+    active: 
+      type: boolean
+      default: true
+    publishable_key:
+      type: string
+      example: "pk_test_igazvVR68pHWRNUGiNK3tdGe"
+    identification:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "unverified"
+        token:
+          type: string
+          example: file_17DewYEdQaLZpoQypq0830s1
+        details:
+          type: string
+        code:
+          type: string  
+    verification:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "verified"
+        disabled_reason:
+          type: string
+        fields_needed:
+          type: array
+          items:
+            type:string
+        due_by:
+          type: number
+          example: 1449727368
+    bank:
+      type: object
+      properties:                    
+        last_4:
+          type: string
+          example: "1111"            
+    address:
+      type: object
+      required: ["line_1", "suburb", "state", "postcode", "main_address"]
+      examples: ["line_1", "line_2", "suburb", "state", "postcode", "main_address"]
+      properties:
+        line_1:
+          type: string
+          example: 123 Fake Street
+        line_2:
+          type: string
+        suburb:
+          type: string
+          example: Pleasantville
+        state:
+          type: string
+          example: WA
+        postcode:
+          type: string
+          example: "1234"
+    image:
+      type: object
+      required: ["url"]
+      properties:
+        url:
+          type: string
+          description: Location of the image
+          example: "https://s3.amazonaws.com/example.jpg"          
+    gym:
+      type: object
+      properties:
+        id:
+          type: string
+          example: z4dWoqSOoRoHIvaQfkzoKQ
+        name:
+          type: string
+          example: "Example Gym"
+    gym_location:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "aJYHH3NogJlF_Kaph0Qw8g"
+        name:
+          type: string
+          example: "Queen St"
+        phone_number:
+          type: string
+          example: "12345678"
+        status:
+          type: string
+          example: "open"
+        address:
+          type: object
+          properties:
+            line_1:
+              type: string
+              example: 123 Fake Street
+            line_2:
+              type: string
+            suburb:
+              type: string
+              example: Pleasantville
+            state:
+              type: string
+              example: WA
+            postcode:
+              type: string
+              example: "1234"
+    targets:
+      type: object
+      examples: ["earning", "supplement_sales", "work_hours", "date", "holidays"]
+      properties:
+        earning:
+          type: number
+          example: 120000
+          description: "Earning target in cents"
+        supplement_sales:
+          type: number
+          example: 60000
+          description: "Supplement sales target in cents"
+        work_hours:
+          type: number
+          example: 40
+          description: "Work hours target"
+        date:
+          type: string
+          format: date
+          example: "2015-12-25"
+          description: "Target date"
+        holidays:
+          type: number
+          example: 12  
+          description: "Holidays target"          
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

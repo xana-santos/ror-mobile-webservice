@@ -1,0 +1,43 @@
+title: "Authenticate a client/trainer"
+description: >
+  <p>Endpoint that will authenticate a client or trainer.</p>
+  <p>
+    This endpoint is useful if there is one system-wide login.
+    If there are seperate login locations for client and trainers, consider using their specific authentication endpoints.
+  </p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["email", "password"]
+  additionalProperties: false
+  properties:
+    email:
+      type: string
+      example: demo@client_or_trainer.com
+    password:
+      type: string
+      example: password
+responseParameters:
+  required: ["status"]
+  properties:
+    id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"
+    status:
+      description: The current status of the account
+      type: string
+      example: "authenticated"
+    sign_up_time:
+      description: Epoch time of user creation (sign up)
+      type: integer
+      example: 1489625424
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

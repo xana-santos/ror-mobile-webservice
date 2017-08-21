@@ -1,0 +1,86 @@
+title: "Update an appointment"
+description: >
+  <p>Authenticated endpoint that will update an appointment.</p>
+  <p><strong>Note:</strong> Updating the clients array will replace the current clients list. Existing clients missing from the new list will be removed, and new clients in the list will be added.</p>
+  <p><strong>Note:</strong> Updating time here will overwrite all child session times.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["id", "start_date", "start_time", "end_date", "end_time"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "fPD2c4Pn48egmJniX_wwxw"
+    clients:
+      type: array
+      items:
+        type: string
+        example: "ofVwRSnAEdgGp88nVjrrcA"
+      description: "Required if event_type is appointment"
+    event_type:
+      type: string
+      enum: ["appointment", "own_time", "consultation", "complimentary_session"]
+      example: "appointment"
+      default: "appointment"
+    event_note:
+      type: string
+      example: Some event note
+    unconverted_note:
+      type: string
+      example: Note about why a prospective client is unconverted
+    sessions_per_week:
+      type: integer
+      example: Number of sessions per week (after a prospective client is converted)
+    client_value_per_week:
+      type: integer
+      example: The estimated cost of client value per week (after a prospective client is converted)
+    start_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    start_time:
+      type: string
+      format: time
+      example: "16:49"
+    end_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    end_time:
+      type: string
+      format: time
+      example: "17:49"
+    duration:
+      type: integer
+      description: "Duration in minutes"
+      example: 60
+    all_day_event:
+      type: boolean
+      example: false
+      default: false
+    session_rate:
+      type: number
+      example: 9999
+    repeat_after:
+      type: string
+      enum: ["day", "week", "fortnight", "month", "never"]
+      example: "month"
+responseParameters:
+  required: ["status"]
+  properties:
+    status:
+      description: The current status of the consultation
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

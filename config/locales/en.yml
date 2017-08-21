@@ -1,0 +1,63 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  active_admin:
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Clear Filters"
+      predicates:
+        contains: "Contains"
+        equals: "Equals"
+        starts_with: "Starts with"
+        ends_with: "Ends with"
+        greater_than: "Greater than"
+        less_than: "Less than"
+        gteq_datetime: "Greater or equal to"
+        lteq_datetime: "Lesser or equal to"
+        from: "From"
+        to: "To"
+  activerecord:
+    attributes:
+      user:
+        email: ""
+        password: ""
+        current_password: ""
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'To complete your registration, please ensure you complete all the fields'
+              taken: 'This email address has an active Positiv Flo account. Please login to Positive Flo using the Login form. If you have forgotten your password please click on "Forgot" below'
+              invalid: 'Please type in your valid email address'
+            password:
+              blank: 'Password cannot blank, please enter password and  try again'
+              confirmation: 'The ‘Password’ and ‘Confirm password’ fields don’t match, please re-enter the same password in both password fields'
+              invalid: 'Please make sure the password is at least 6 characters'
+              required: 'To complete your registration, please ensure you complete all the fields'
+              too_short: 'Please make sure the password is at least 6 characters'
+            current_password:
+              blank: 'Current Password cannot blank, Please type your last saved password'
+              invalid: 'Please ensure you correctly type in your password or if you have forgotten your password, please click on "Forgot Password"'
+
+

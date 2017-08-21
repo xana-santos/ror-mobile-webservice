@@ -1,0 +1,50 @@
+<% provide(:title, "Purchase Details") %>
+<h3>Purchase Details</h3>
+
+<% if flash[:notice] %>
+    
+  <div class="callout success">
+    <%= flash[:notice] %>
+  </div>
+  
+<% end %>
+
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Per Unit</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @purchase.product_purchases.each do |product_purchase| %>
+      <tr>
+        <td><%= product_purchase.title %></td>
+        <td><%= number_to_currency(product_purchase.unit_price/100.00) %></td>
+        <td><%= product_purchase.quantity %></td>
+        <td><%= number_to_currency(product_purchase.total/100.00) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Shipping</td>
+      <td>$9.95</td>
+      <td>1</td>
+      <td>$9.95</td>
+    </tr>
+  </tbody>
+  <tfooter>
+    <tr>
+      <td colspan="3"></td>
+      <td><strong><%= number_to_currency(@purchase.amount/100.00) %></strong></td>
+    </tr>
+  </tfooter>
+</table>
+
+<% if @purchase.unconfirmed? %>
+  
+  <%= link_to "Confirm purchase", purchase_confirm_url(@purchase.api_token), method: :post, class: "button small-expand columns large-4" %>
+  <%= link_to "Reject purchase", purchase_reject_url(@purchase.api_token), method: :post, class: "button alert small-expand columns large-4" %>
+  
+<% end %>

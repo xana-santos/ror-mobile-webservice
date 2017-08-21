@@ -1,0 +1,134 @@
+title: "Create a client"
+description: >
+  <p>Authenticated endpoint that will create a new client.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["trainer_id", "first_name", "last_name", "email"]
+  examples: ["trainer_id", "first_name", "last_name", "email", "birthdate", "mobile", "mobile_preferred", "phone", "office", "image", "client_details", "addresses", "stripe"]
+  additionalProperties: false
+  properties:
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"
+    first_name:
+      type: string
+      example: Example
+    last_name:
+      type: string
+      example: User
+    email:
+      type: string
+      format: email
+      example: demo@client.com
+    birthdate:
+      type: string
+      format: date
+      example: "1985-12-25"
+    # password:
+    #   type: string
+    #   example: "password"
+    # password_confirmation:
+    #   type: string
+    #   example: "password"
+    mobile:
+      type: string
+      example: "0400000000"
+    mobile_preferred:
+      type: boolean
+      default: false
+    office:
+      type: string
+      example: "12345678"
+    phone:
+      type: string
+      example: "12345678"
+    client_details:
+      type: object
+      additionalProperties: false
+      examples: ["start_date", "supplement_only", "prospect_only", "session_duration", "session_rate"]
+      properties:
+        start_date:
+          type: string
+          format: date
+          example: "2015-12-25"
+        supplement_only:
+          type: boolean
+          example: false
+        prospect_only:
+          type: boolean
+          example: false
+        session_duration:
+          type: integer
+          example: 45
+        session_rate:
+          description: "Session rate in cents"
+          type: integer
+          example: 1000
+        num_bulk_sessions:
+          description: "Number of prepaid bulk sessions"
+          type: integer
+          example: 10
+    image:
+      type: object
+      required: ["url"]
+      properties:
+        url:
+          type: string
+          description: Location of the image
+          example: "https://s3.amazonaws.com/example.jpg"
+    addresses:
+      type: array
+      items:
+        type: object
+        additionalProperties: false
+        required: ["type", "line_1", "suburb", "state", "postcode", "main_address"]
+        properties:
+          type:
+            type: string
+            enum: ["shipping", "billing"]
+            example: "billing"
+          line_1:
+            type: string
+            example: 123 Fake Street
+          line_2:
+            type: string
+          suburb:
+            type: string
+            example: Pleasantville
+          state:
+            type: string
+            example: WA
+          postcode:
+            type: string
+            example: "1234"
+          main_address:
+            type: boolean
+            example: true
+    card_token:
+      type: string
+      example: card_16i0BHCwSVS5sQXuzrSKAkja
+    pflo_card_token:
+      type: string
+      example: card_16i0BHCwSVS5sQXuzrSKAkja
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the user with Positivflo
+      type: string
+      example: ofVwRSnAEdgGp88nVjrrcA
+    status:
+      description: The current status of the account
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

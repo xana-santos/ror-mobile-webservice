@@ -1,0 +1,69 @@
+title: "Retrieve a product"
+description: >
+  <p>Authenticated endpoint that will retrieve a product's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "0X1kV7kuc3Nfh1U3qAHLhQ"
+responseParameters:
+  properties:
+    title:
+      type: string
+      example: "One Fabulous Product"
+    description:
+      type: string
+      example: "Buy it before they run out!"
+    product_id:
+      type: string
+      example: "HF-4459"
+    unit_price:
+      type: number
+      example: 3000
+      description: "Unit price in cents"
+    unit_type:
+      type: string
+      example: "Some type"
+    categories:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "X5Krd7G5jipKbU02tyoDdQ"
+          category:
+            type: string
+            example: "Weight Loss"
+          description:
+            type: string
+            example: "Weight Loss Products"
+    product_image:
+      type: string
+      description: Location of the image
+      example: "https://s3.amazonaws.com/example.jpg"          
+    status:
+      type: string
+      enum: ["published", "unpublished"]
+      example: "published"
+    out_of_stock:
+      type: boolean
+      example: false
+      default: false
+    cost:
+      type: number
+      example: 3000
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,161 @@
+title: "List invoices"
+description: "<p>Authenticated endpoint that returns invoices.</p>"
+docs_position: 2
+requestParameters:
+  type: object
+  examples: ["limit", "offset"]
+  additionalProperties: false
+  properties:
+    limit:
+      type: ["integer", "string"]
+      minimum: 10
+      maximum: 100
+      default: 25
+      description: The number of records returned
+    offset:
+      type: ["integer", "string"]
+      default: 0
+      description: The offset of the first record returned
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"  
+      description: "Return invoices for this client only"
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"  
+      description: "Return invoices for this client only"
+    record_id:
+      type: string
+      example: "zQUCbyVrr0ZxNCIx9TzuyA"  
+      description: "Return invoice items for this record ID"
+    record_type:
+      type: string
+      example: "client_session"  
+      enum: ["client_session", "purchase"]
+      description: "Return invoice items for this record type only"
+    timestamp:
+      type: ["integer", "string"]
+      description: Return records created/updated after this time
+responseParameters:
+  type: object
+  properties:
+    invoices:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "gCXzROAgWMxMKm9OTs9RLw"
+          generated:
+            type: number
+            example: 1452082897  
+          subtotal:
+            type: number
+            example: 6000
+          total:
+            type: number
+            example: 6120
+          fees:
+            type: number
+            example: 120  
+          record:
+            type: object
+            properties:
+              type:
+                type: string
+                example: "session"
+              id:
+                type: string
+                example: "yTUXbyVyr0ZxNCHx9TzuyA"  
+          description:
+            type: string
+            example: "1 x 45 minute session at $60.00"  
+          paid:
+            type: boolean
+            example: true
+          payment_details:
+            type: string
+            example: "Payment successful"  
+          attempts:
+            type: number
+            example: 1  
+          items:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "Cp245B0RsgFNPcaApp9ZGA"
+                quantity:
+                  type: number
+                  example: 1  
+                subtotal:
+                  type: number
+                  example: 6000
+                total:
+                  type: number
+                  example: 6120
+                fees:
+                  type: number
+                  example: 120  
+                item:
+                  type: string
+                  example: 45 minute session
+                description:
+                  type: string
+                  example: "1 x 45 minute session at $60.00"
+                record:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: "client_session"
+                    id:
+                      type: string
+                      example: "yTUXbyVyr0ZxNCHx9TzuyA"
+          client:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "ofVwRSnAEdgGp88nVjrrcA"
+              first_name: 
+                type: string
+                example: Demo
+              last_name:
+                type: string
+                example: User
+              email:
+                type: string
+                example: demo@client.com  
+          trainer:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "2qFTErmCZAJzMmGG9TRYsQ"
+              first_name:
+                type: string
+                example: Example
+              last_name:
+                type: string
+                example: User
+              email:
+                type: string
+                format: email
+                example: demo@trainer.com        
+    meta:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        offset:
+          type: integer
+          example: 0
+        total:
+          description: Total number of appointments (excluding limit and offsets)
+          type: integer
+          example: 1

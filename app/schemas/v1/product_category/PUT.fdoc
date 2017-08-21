@@ -1,0 +1,36 @@
+title: "Update a product category"
+description: > 
+  <p>Authenticated endpoint that will update a product category.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["id", "description"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "X5Krd7G5jipKbU02tyoDdQ"
+    category:
+      type: string
+      example: "Weight Loss"  
+    description:
+      type: string
+      example: "Only the best weight loss products"  
+responseParameters:
+  required: ["status"]
+  properties:
+    status:
+      description: The current status of the product
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

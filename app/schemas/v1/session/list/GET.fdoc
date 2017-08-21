@@ -1,0 +1,179 @@
+title: "List sessions"
+description: "<p>Authenticated endpoint that returns sessions.</p>"
+docs_position: 2
+requestParameters:
+  type: object
+  examples: ["limit", "offset"]
+  additionalProperties: false
+  properties:
+    limit:
+      type: ["integer", "string"]
+      minimum: 10
+      maximum: 100
+      default: 25
+      description: The number of records returned
+    offset:
+      type: ["integer", "string"]
+      default: 0
+      description: The offset of the first record returned
+    appointment_id:
+      type: string
+      example: "fPD2c4Pn48egmJniX_wwxw"  
+      description: "Return sessions for this appointment only"
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"  
+      description: "Return sessions for this client only"
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"  
+      description: "Return sessions for this client only"
+    timestamp:
+      type: ["integer", "string"]
+      description: Return records created/updated after this time
+    start:
+      type: object
+      required: ["date", "time"]
+      description: Return sessions beginning after or on this date and time
+      properties:
+        date:
+          type: string
+          description: Return sessions beginning after or on this date
+        time:
+          type: string
+          description: Return sessions beginning after or at this time
+    end:
+      type: object
+      required: ["date", "time"]
+      description: Return sessions ending before or on this date and time
+      properties:
+        date:
+          type: string
+          description: Return sessions ending before or on this date
+        time:
+          type: string
+          description: Return sessions ending before or at this time
+    start_date:
+      type: string
+      description: Return sessions beginning after or on this date
+    start_time:
+      type: string
+      description: Return sessions beginning after or on this time
+    end_date:
+      type: string
+      description: Return sessions ending before or on this date
+    end_time:
+      type: string
+      description: Return sessions ending before or at this time
+    include_deleted:
+      type: ["boolean", "string"]
+      default: false    
+responseParameters:
+  type: object
+  properties:
+    sessions:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "yTUXbyVyr0ZxNCHx9TzuyA"
+          date:
+            type: string
+            example: "2015-12-25"  
+          time:
+            type: string
+            example: "12:30"  
+          appointment:
+            type: object
+            properties:
+              id:
+                type: string
+                example: fPD2c4Pn48egmJniX_wwxw  
+          clients:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "ofVwRSnAEdgGp88nVjrrcA"
+                first_name: 
+                  type: string
+                  example: Demo
+                last_name:
+                  type: string
+                  example: User
+                email:
+                  type: string
+                  example: demo@client.com
+                status:
+                  type: string
+                  example: paid
+                invoice:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "gCXzROAgWMxMKm9OTs9RLw"
+                    subtotal:
+                      type: number
+                      example: 6000
+                    total:
+                      type: number
+                      example: 6120
+                    fees:
+                      type: number
+                      example: 120  
+                    description:
+                      type: string
+                      example: "1 x 45 minute session at $60.00"
+                    paid:
+                      type: boolean
+                      example: true
+                    payment_details:
+                      type: string
+                      example: "Payment successful"
+                    attempts:
+                      type: number
+                      example: 1  
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "Cp245B0RsgFNPcaApp9ZGA"
+                          quantity:
+                            type: number
+                            example: 1  
+                          subtotal:
+                            type: number
+                            example: 6000
+                          total:
+                            type: number
+                            example: 6120
+                          fees:
+                            type: number
+                            example: 120  
+                          item:
+                            type: string
+                            example: 45 minute session
+                          description:
+                            type: string
+                            example: "1 x 45 minute session at $60.00"  
+    meta:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        offset:
+          type: integer
+          example: 0
+        total:
+          description: Total number of appointments (excluding limit and offsets)
+          type: integer
+          example: 1

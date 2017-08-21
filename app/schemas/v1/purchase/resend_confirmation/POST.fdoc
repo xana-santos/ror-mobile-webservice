@@ -1,0 +1,28 @@
+title: "Resend a purchase confirmation"
+description: > 
+  <p>Authenticated endpoint that will resend a purchase confirmation.</p>
+  <p>You may only resend [unconfirmed] purchases.</p>
+docs_position: 7
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "13yRMtPSFC6TKxFeMH_WDA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "resent"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Purchase resent
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

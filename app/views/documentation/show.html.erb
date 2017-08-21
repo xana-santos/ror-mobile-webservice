@@ -1,0 +1,59 @@
+<%= provide(:body_classes, "api") %>
+
+<div name="introduction" data-unique="introduction"></div>
+<h1 id="introduction" class="section-header" data-toc-name="Introduction">
+  Introduction  
+</h1>
+<blockquote>
+  <p>API Endpoint</p>
+</blockquote>
+<pre class="highlight plaintext"><code><%= @api_endpoint %></code></pre>
+
+<p>
+  This is the documentation for the PositivFlo API.
+</p>
+
+<div name="authorization" data-unique="authorization"></div>
+<h1 id="authorization" class="section-header">Authorization</h1>
+
+<h2 id='keys' class='section-header'>Credentials</h2>
+
+<p>
+  In order to authenticate with the API you will require an bearer token. 
+</p>  
+
+<p>
+  The bearer token will be generated when the database is seeded, so please note that the token may be different between staging and production servers.
+</p>  
+
+<h3 id="http-request">Bearer Token</h3>
+
+<% if Authorization.any? %>
+  <p>
+  <span class="print-holder"><code class="prettyprint"><%= Authorization.first.auth_token %></code></span>
+  </p>
+<% else %>
+  <p>A bearer token has not yet been generated for this server. Please seed the database and try again.</p>
+<% end %>
+
+<h2 id='auth' class='section-header'>Authentication</h2>
+
+<p>
+  The bearer token must be used to issue requests to the API endpoints. To use the bearer token, construct a normal request and include an Authorization header with the value of Bearer [your bearer token]. Signing is not required.
+</p>
+
+<h3 id="http-request">Example Request</h3>
+
+<p>
+<span class="print-holder">
+  <code class="prettyprint">GET /v1/test HTTP/1.1 <br />
+  Authorization: Bearer <%= Authorization.first.auth_token rescue "AAAAAAAAAAA" %>
+  <br />
+  Content-Type: application/json
+</code></span>
+</p>
+
+<div name="endpoints" data-unique="endpoints"></div>
+<h1 id="endpoints" class="section-header">Endpoints</h1>
+
+<%= raw get_endpoints("v1") %>

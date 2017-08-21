@@ -1,0 +1,42 @@
+title: "Add image to record"
+description: > 
+  <p>Authenticated endpoint that will add an image to a record.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["record_type", "record_id", "url"]
+  additionalProperties: false
+  properties:
+    record_type:
+      type: string
+      enum: ["consultation", "product"]
+      example: "consultation"
+    record_id:
+      type: string
+      example: "PKpxLV2YoxKDumGAJ-ipvA"
+      description: ID of the record you wish to add an image to
+    url:
+      type: string
+      description: Location of the image
+      example: "https://s3.amazonaws.com/example.jpg"  
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the image with Positivflo
+      type: string
+      example: RL6ZK3Zr0QXsH3eeoAQ7ig
+    status:
+      description: The current status of the image
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: image created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

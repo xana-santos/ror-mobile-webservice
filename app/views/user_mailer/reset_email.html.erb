@@ -1,0 +1,29 @@
+<table class="row">
+  <tr>
+    <td class="wrapper last">
+
+      <table class="twelve columns">
+        <tr>
+          <td>
+            <h3>Hi <%= @user.first_name %>,</h3>
+            <br />
+            <p>
+              Please use <%= link_to "this link", reset_password_url(@user.reset_token) %> to reset your Positiv Flo account password.
+            </p>  
+            <p>
+              Please send an email to <a href="mailto:support@positivflo.com.au">support@positivflo.com.au</a> if you did not request a password reset, or are still having trouble logging in.
+            </p>  
+            <p>
+              Thanks Again!
+            </p>            
+            <p>
+              <strong>The Positiv Flo Team</strong>
+            </p>
+          </td>
+          <td class="expander"></td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,38 @@
+title: "Resend confirmation"
+description: > 
+  <p>Authenticated endpoint that will resend a session confirmation.</p>
+  <p>You may only resend session confirmations for clients in the [invited] state.</p>
+docs_position: 4
+requestParameters:
+  type: object
+  required: ["id", "clients"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "13yRMtPSFC6TKxFeMH_WDA"
+    clients:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required: ["id"]
+        properties:
+          id:
+            type: string
+            example: ofVwRSnAEdgGp88nVjrrcA
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "resent"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Purchase restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

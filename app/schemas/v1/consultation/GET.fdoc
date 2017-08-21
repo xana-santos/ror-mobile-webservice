@@ -1,0 +1,133 @@
+title: "Retrieve a consultation"
+description: > 
+  <p>Authenticated endpoint that will retrieve a consultation's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "PKpxLV2YoxKDumGAJ-ipvA"
+responseParameters:
+  properties:
+    id:
+      type: string
+      example: "PKpxLV2YoxKDumGAJ-ipvA"
+    chest:
+      type: number
+      example: 30.00
+    hips:
+      type: number
+      example: 30.00
+    weight:
+      type: number
+      example: 30.00
+    waist:
+      type: number
+      example: 30.00
+    lean_body_weight:
+      type: number
+      example: 30.00
+    body_fat_weight:
+      type: number
+      example: 30.00
+    measurement:
+      type: number
+      example: 130.00
+    left_arm:
+      type: number
+      example: 10.00
+    right_arm:
+      type: number
+      example: 8.00  
+    glutes:
+      type: number
+      example: 30.00
+    left_quads:
+      type: number
+      example: 30.00
+    right_quads:
+      type: number
+      example: 30.00
+    left_calf:
+      type: number
+      example: 20.00
+    right_calf:
+      type: number
+      example: 20.00        
+    total_measurement:
+      type: number
+      example: 30.00        
+    fat_percentage:
+      type: number
+      example: 20.00
+    comments:
+      type: string
+      example: "Good progress"  
+    consultation_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    consultation_time:
+      type: string
+      format: time
+      example: "15:49"
+    images:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: ykgxonIHp8IzfK8C42HsGA
+          url:
+            type: string
+            description: Location of the image
+            example: "https://s3.amazonaws.com/example.jpg"  
+          position:
+            type: number
+            description: "Image Position"
+            example: 0 
+    client:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "ofVwRSnAEdgGp88nVjrrcA"
+        first_name: 
+          type: string
+          example: Demo
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          example: demo@client.com
+    trainer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "2qFTErmCZAJzMmGG9TRYsQ"
+        first_name:
+          type: string
+          example: Example
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          format: email
+          example: demo@trainer.com      
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Positiv Flo | Documentation</title>
+
+    <%= stylesheet_link_tag "api" %>
+    <%= csrf_meta_tags %>
+    
+    <%= favicon_link_tag %>
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    
+  </head>
+
+  <body class="<%= yield(:body_classes) %>">
+    
+    <main class="site-content">
+          
+      <div class="page-wrapper">
+  
+        <div class="tocify-wrapper">
+                    
+          <div id="toc" class="tocify">
+  
+          </div>
+            
+        </div>
+                
+        <div class="content-body">
+  
+          <div class="dark-box"></div>
+
+          <div class="content">
+            <%= yield %>
+          </div>
+          
+        </div>  
+          
+      </div>    
+            
+    </main>
+    
+    <%= javascript_include_tag "application" %>
+    
+  </body>
+</html>

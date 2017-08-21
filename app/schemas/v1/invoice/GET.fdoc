@@ -1,0 +1,116 @@
+title: "Retrieve an invoice"
+description: "<p>Authenticated endpoint that retrieves an invoice.</p>"
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "gCXzROAgWMxMKm9OTs9RLw"
+responseParameters:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "gCXzROAgWMxMKm9OTs9RLw"
+    generated:
+      type: number
+      example: 1452082897  
+    subtotal:
+      type: number
+      example: 6000
+    total:
+      type: number
+      example: 6120
+    fees:
+      type: number
+      example: 120  
+    description:
+      type: string
+      example: "1 x 45 minute session at $60.00"
+    paid:
+      type: boolean
+      example: true
+    payment_details:
+      type: string
+      example: "Payment successful"  
+    attempts:
+      type: number
+      example: 1   
+    record:
+      type: object
+      properties:
+        type:
+          type: string
+          example: "client_session"
+        id:
+          type: string
+          example: "yTUXbyVyr0ZxNCHx9TzuyA"  
+    items:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "Cp245B0RsgFNPcaApp9ZGA"
+          quantity:
+            type: number
+            example: 1  
+          subtotal:
+            type: number
+            example: 6000
+          total:
+            type: number
+            example: 6120
+          fees:
+            type: number
+            example: 120  
+          item:
+            type: string
+            example: 45 minute session
+          description:
+            type: string
+            example: "1 x 45 minute session at $60.00"
+          record:
+            type: object
+            properties:
+              type:
+                type: string
+                example: "client_session"
+              id:
+                type: string
+                example: "yTUXbyVyr0ZxNCHx9TzuyA"
+    client:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "ofVwRSnAEdgGp88nVjrrcA"
+        first_name: 
+          type: string
+          example: Demo
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          example: demo@client.com  
+    trainer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "2qFTErmCZAJzMmGG9TRYsQ"
+        first_name:
+          type: string
+          example: Example
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          format: email
+          example: demo@trainer.com        

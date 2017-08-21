@@ -1,0 +1,28 @@
+title: "Confirm a purchase"
+description: > 
+  <p>Authenticated endpoint that will confirm a purchase and charge a client.</p>
+  <p>You may only confirm [unconfirmed] purchases.</p>
+docs_position: 8
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "13yRMtPSFC6TKxFeMH_WDA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "confirmed"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Purchase restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

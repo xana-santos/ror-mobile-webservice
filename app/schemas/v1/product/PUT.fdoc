@@ -1,0 +1,64 @@
+title: "Update a product"
+description: >
+  <p>Authenticated endpoint that will update a product.</p>
+  <p><strong>Note:</strong> Updating the categories array will replace the current categories list. Existing categories missing from the new list will be removed, and new categories in the list will be added.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["id", "title"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "0X1kV7kuc3Nfh1U3qAHLhQ"
+    title:
+      type: string
+      example: "One Really Fabulous Product"
+    description:
+      type: string
+      example: "Buy it before they run out!"
+    product_id:
+      type: string
+      example: "HF-4459"
+    unit_price:
+      type: number
+      example: 3000
+      description: "Unit price in cents"
+    unit_type:
+      type: string
+      example: "Some type"
+    categories:
+      type: array
+      items:
+        type: string
+        example: "X5Krd7G5jipKbU02tyoDdQ"
+      description: Array of product category ID's
+    status:
+      type: string
+      enum: ["published", "unpublished"]
+      example: "published"
+    out_of_stock:
+      type: boolean
+      example: false
+      default: false
+    cost:
+      type: number
+      example: 3000
+responseParameters:
+  required: ["status"]
+  properties:
+    status:
+      description: The current status of the product
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

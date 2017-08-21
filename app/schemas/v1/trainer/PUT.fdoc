@@ -1,0 +1,135 @@
+title: "Update a trainer"
+description: >
+  <p>Authenticated endpoint that will update a trainer's details.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["email", "mobile"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: 2qFTErmCZAJzMmGG9TRYsQ
+      description: Trainer token
+    first_name:
+      type: string
+      example: Example
+    last_name:
+      type: string
+      example: User
+    email:
+      type: string
+      format: email
+      example: demo-new@trainer.com
+    password:
+      type: string
+      example: "password"
+    mobile:
+      type: string
+      example: "0410000000"
+    office:
+      type: string
+      example: "12345678"
+    phone:
+      type: string
+      example: "12345678"
+    abn:
+      type: string
+      example: "12345678910"
+    birthdate:
+      type: string
+      format: date
+      example: "1985-12-25"
+    gst:
+      type: boolean
+      example: true
+    address:
+      type: object
+      required: ["line_1", "suburb", "state", "postcode"]
+      examples: ["line_1", "line_2", "suburb", "state", "postcode"]
+      additionalProperties: false
+      properties:
+        line_1:
+          type: string
+          example: 123 Fake Street
+        line_2:
+          type: string
+        suburb:
+          type: string
+          example: Pleasantville
+        state:
+          type: string
+          example: WA
+        postcode:
+          type: string
+          example: "1234"
+    image:
+      type: object
+      required: ["url"]
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+          description: Location of the image
+          example: "https://s3.amazonaws.com/example.jpg"
+    gym_location_id:
+      type: string
+      example: aJYHH3NogJlF_Kaph0Qw8g
+    targets:
+      type: object
+      examples: ["earning", "supplement_sales", "work_hours", "date", "holidays"]
+      properties:
+        earning:
+          type: number
+          example: 120000
+          description: "Earning target in cents"
+        supplement_sales:
+          type: number
+          example: 60000
+          description: "Supplement sales target in cents"
+        work_hours:
+          type: number
+          example: 40
+          description: "Work hours target"
+        date:
+          type: string
+          format: date
+          example: "2015-12-25"
+          description: "Target date"
+        holidays:
+          type: number
+          example: 12
+          description: "Holidays target"
+    bank_token:
+      type: string
+      example: btok_7PeOTEcqxkf5k8
+    new_stripe_account:
+      type: string
+      example: true
+    identity_image:
+      type: object
+      required: ["url"]
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+          description: Location of the image
+          example: "https://s3.amazonaws.com/example.jpg"
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    status:
+      description: The current status of the account
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,109 @@
+title: "Mark attendance"
+description: > 
+  <p>Authenticated endpoint that will mark attendance and charge clients.</p>
+  <p>You may only mark clients in the [confirmed] state.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id", "clients"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "13yRMtPSFC6TKxFeMH_WDA"
+    clients:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required: ["id", "attended"]
+        additionalProperties: false
+        properties:
+          id:
+            type: string
+            example: ofVwRSnAEdgGp88nVjrrcA
+          attended:
+            type: boolean
+            example: true
+          charge_percent:
+            type: number
+            example: 100
+            maximum: 100
+            minimum: 0
+            default: 100
+responseParameters:
+  properties:
+    clients:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: ofVwRSnAEdgGp88nVjrrcA
+          status:
+            type: string
+            example: "paid"
+          invoice:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "gCXzROAgWMxMKm9OTs9RLw"
+              subtotal:
+                type: number
+                example: 6000
+              total:
+                type: number
+                example: 6120
+              fees:
+                type: number
+                example: 120  
+              description:
+                type: string
+                example: "1 x 45 minute session at $60.00"
+              paid:
+                type: boolean
+                example: true
+              payment_details:
+                type: string
+                example: "Payment successful"
+              attempts:
+                type: number
+                example: 1  
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "Cp245B0RsgFNPcaApp9ZGA"
+                    quantity:
+                      type: number
+                      example: 1  
+                    subtotal:
+                      type: number
+                      example: 6000
+                    total:
+                      type: number
+                      example: 6120
+                    fees:
+                      type: number
+                      example: 120  
+                    item:
+                      type: string
+                      example: 45 minute session
+                    description:
+                      type: string
+                      example: "1 x 45 minute session at $60.00"      
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Purchase restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

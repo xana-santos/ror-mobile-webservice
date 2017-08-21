@@ -1,0 +1,62 @@
+title: "Retrieve gym location"
+description: > 
+  <p>Authenticated endpoint that will retrieve a gym location's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "aJYHH3NogJlF_Kaph0Qw8g"
+responseParameters:
+  properties:
+    id:
+      type: string
+      example: "aJYHH3NogJlF_Kaph0Qw8g"
+    name:
+      type: string
+      example: "Queen St"
+    phone_number:
+      type: string
+      example: "12345678"
+    status:
+      type: string
+      example: "open"
+    address:
+      type: object
+      properties:
+        line_1:
+          type: string
+          example: 123 Fake Street
+        line_2:
+          type: string
+        suburb:
+          type: string
+          example: Pleasantville
+        state:
+          type: string
+          example: WA
+        postcode:
+          type: string
+          example: "1234"
+    gym:
+      type: object
+      properties:
+        id:
+          type: string
+          example: z4dWoqSOoRoHIvaQfkzoKQ
+        name:
+          type: string
+          example: "Example Gym"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym retrieved
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,61 @@
+title: "Retrieve a session"
+description: "<p>Authenticated endpoint that retrieves a session.</p>"
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "yTUXbyVyr0ZxNCHx9TzuyA"
+responseParameters:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "yTUXbyVyr0ZxNCHx9TzuyA"
+    date:
+      type: string
+      example: "2015-12-25"  
+    time:
+      type: string
+      example: "12:30"  
+    appointment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: fPD2c4Pn48egmJniX_wwxw  
+    clients:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "ofVwRSnAEdgGp88nVjrrcA"
+          first_name: 
+            type: string
+            example: Demo
+          last_name:
+            type: string
+            example: User
+          email:
+            type: string
+            example: demo@client.com
+          status:
+            type: string
+            example: confirmed
+          payment:
+            type: object
+            properties:  
+              paid:
+                type: boolean
+                default: false
+              details:
+                type: string
+                example: null
+              amount:
+                type: number
+                example: 9999  

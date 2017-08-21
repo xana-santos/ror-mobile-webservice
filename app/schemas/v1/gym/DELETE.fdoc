@@ -1,0 +1,33 @@
+title: "Remove a gym"
+description: > 
+  <p>Authenticated endpoint that will delete a gym.</p>
+docs_position: 4
+requestParameters:
+  type: object
+  additionalProperties: false
+  examples: ["ids"]
+  properties:
+    id:
+      type: string
+      example: "z4dWoqSOoRoHIvaQfkzoKQ"
+    ids:
+      type: array
+      items:
+        minItems: 1
+        type: string
+        example: "z4dWoqSOoRoHIvaQfkzoKQ"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "deleted"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

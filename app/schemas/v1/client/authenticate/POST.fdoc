@@ -1,0 +1,35 @@
+title: "Authenticate a client"
+description: > 
+  <p>Endpoint that will authenticate a client.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["email", "password"]
+  additionalProperties: false
+  properties:
+    email:
+      type: string
+      example: demo@client.com
+    password:
+      type: string
+      example: password
+responseParameters:
+  required: ["status"]
+  properties:
+    id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+    status:
+      description: The current status of the account
+      type: string
+      example: "authenticated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

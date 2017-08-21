@@ -1,0 +1,39 @@
+title: "Retrieve image"
+description: > 
+  <p>Authenticated endpoint that will retrieve an image's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "RL6ZK3Zr0QXsH3eeoAQ7ig"
+responseParameters:
+  properties:
+    id:
+      type: string
+      example: "RL6ZK3Zr0QXsH3eeoAQ7ig"
+    url:
+      type: string
+      example: "https://s3.amazonaws.com/example.jpg"
+    record:
+      type: object
+      properties:
+        id:
+          type: string
+          example: PKpxLV2YoxKDumGAJ-ipvA
+        type:
+          type: string
+          example: consultation    
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: image retrieved
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

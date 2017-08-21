@@ -1,0 +1,28 @@
+title: "Restore a trainer"
+description: > 
+  <p>Authenticated endpoint that will restore a previously deleted trainer.</p>
+  <p>You may only restore deleted trainers. If you attempt to restore an active trainer, an error will be raised.</p>
+docs_position: 5
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "restored"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Trainer restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

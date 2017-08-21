@@ -1,0 +1,23 @@
+title: "Retry an invoice payment"
+description: "<p>Authenticated endpoint that retrieves an invoice payment.</p>"
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "gCXzROAgWMxMKm9OTs9RLw"
+responseParameters:
+  type: object
+  properties:
+    status:
+      type: string
+      example: "succeeded"
+    paid:
+      type: boolean
+      example: true
+    payment_details:
+      type: string
+      example: "Payment successful"

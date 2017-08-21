@@ -1,0 +1,36 @@
+title: "Create a product category"
+description: > 
+  <p>Authenticated endpoint that will create a new product category.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["category", "description"]
+  additionalProperties: false
+  properties:
+    category:
+      type: string
+      example: "Weight Loss"
+    description:
+      type: string
+      example: "Weight Loss Products"
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the product category with Positivflo
+      type: string
+      example: X5Krd7G5jipKbU02tyoDdQ
+    status:
+      description: The current status of the product category
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,133 @@
+title: "Retrieve an appointment"
+description: >
+  <p>Authenticated endpoint that will retrieve an appointment's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "fPD2c4Pn48egmJniX_wwxw"
+responseParameters:
+  properties:
+    id:
+      type: string
+      example: "fPD2c4Pn48egmJniX_wwxw"
+    event_type:
+      type: string
+      enum: ["appointment", "own_time", "consultation", "complimentary_session"]
+      example: "appointment"
+      default: "appointment"
+    event_note:
+      type: string
+      example: Some event note
+    unconverted_note:
+      type: string
+      example: Note about why a prospective client is unconverted
+    sessions_per_week:
+      type: integer
+      example: Number of sessions per week (after a prospective client is converted)
+    client_value_per_week:
+      type: integer
+      example: The estimated cost of client value per week (after a prospective client is converted)
+    start_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    start_time:
+      type: string
+      format: time
+      example: "15:49"
+    end_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    end_time:
+      type: string
+      format: time
+      example: "16:49"
+    duration:
+      type: integer
+      description: "Duration in minutes"
+      example: 60
+    all_day_event:
+      type: boolean
+      example: false
+      default: false
+    session_rate:
+      type: number
+      example: 9999
+    repeat_after:
+      type: string
+      enum: ["day", "week", "fortnight", "month"]
+      example: "month"
+    trainer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "2qFTErmCZAJzMmGG9TRYsQ"
+        first_name:
+          type: string
+          example: Example
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          format: email
+          example: demo@trainer.com
+    clients:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "ofVwRSnAEdgGp88nVjrrcA"
+          first_name:
+            type: string
+            example: Demo
+          last_name:
+            type: string
+            example: User
+          email:
+            type: string
+            example: demo@client.com
+    sessions:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "yTUXbyVyr0ZxNCHx9TzuyA"
+          date:
+            type: string
+            example: "2015-12-25"
+          time:
+            type: string
+            example: "12:30"
+          clients:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "ofVwRSnAEdgGp88nVjrrcA"
+                status:
+                  type: string
+                  example: confirmed
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

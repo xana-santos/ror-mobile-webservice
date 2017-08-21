@@ -1,0 +1,36 @@
+set daemon 30
+
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+set eventqueue
+  basedir /var/lib/monit/events
+  slots 100
+
+set httpd port 2812 and
+    use address localhost
+    allow localhost
+
+set mailserver smtp.mailgun.org port 587
+  username "<%= fetch :monit_email_username %>"
+  password "<%= fetch :monit_email_password %>"
+  using tlsv1
+  with timeout 30 seconds
+
+set mail-format { from: monit@positivflo.com.com }
+
+<%= "set alert #{fetch(:monit_alert_email)} but not on { instance, pid, ppid }" unless fetch(:monit_alert_email).nil? %>
+<%= "set alert #{fetch(:monit_alert_email_2)} but not on { instance, pid, ppid }" unless fetch(:monit_alert_email_2).nil? %>
+
+<% unless fetch(:monit_password).nil? %>
+set httpd port <%= fetch :monit_port %>
+  allow admin:"<%= fetch :monit_password %>"
+<% end %>
+
+check system <%= "#{fetch(:application)}_#{fetch(:stage)}" %>
+  if loadavg(5min) > 2 for 2 cycles then alert
+  if memory > 95% for 2 cycles then alert
+  if cpu(user) > 95% for 2 cycles then alert
+
+include /etc/monit/conf.d/*

@@ -1,0 +1,85 @@
+title: "Retrieves a purchase"
+description: > 
+  <p>Authenticated endpoint that retrieve a purchase.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: 13yRMtPSFC6TKxFeMH_WDA
+responseParameters:
+  type: object
+  examples: ["trainer_id", "client_id", "products"]
+  properties:
+    products:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        examples: ["id", "title", "unit_price", "quantity", "total"]
+        properties:
+          id:
+            type: string
+            example: 0X1kV7kuc3Nfh1U3qAHLhQ
+          title:
+            type: string
+            example: One Fabulous Product  
+          unit_price:
+            type: number
+            example: 3000    
+          quantity:
+            type: number
+            example: 5
+          total:
+            type: number
+            example: 15000  
+    amount:
+      type: number
+      example: 15000
+    status:
+      type: string        
+      example: "unconfirmed"
+    client:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "ofVwRSnAEdgGp88nVjrrcA"
+        first_name: 
+          type: string
+          example: Demo
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          example: demo@client.com  
+    trainer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "2qFTErmCZAJzMmGG9TRYsQ"
+        first_name:
+          type: string
+          example: Example
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          format: email
+          example: demo@trainer.com  
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

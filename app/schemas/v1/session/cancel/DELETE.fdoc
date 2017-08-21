@@ -1,0 +1,17 @@
+title: "Cancel a session"
+description: > 
+  <p>Authenticated endpoint that will cancel a session.</p>
+docs_position: 5
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "yTUXbyVyr0ZxNCHx9TzuyA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "cancelled"

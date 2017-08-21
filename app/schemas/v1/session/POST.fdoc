@@ -1,0 +1,43 @@
+title: "Create a session"
+description: > 
+  <p>Authenticated endpoint that will create a new session.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["appointment_id", "date", "status"]
+  additionalProperties: false
+  properties:
+    appointment_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"  
+    date:
+      type: string
+      example: 2015-08-08
+    time:
+      type: string
+      example: 15:49
+    status:
+      type: string
+      enum: ["invited", "cancelled"]
+      example: "cancelled"
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the consultation with Positivflo
+      type: string
+      example: yTUXbyVyr0ZxNCHx9TzuyA
+    status:
+      description: The current status of the consultation
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

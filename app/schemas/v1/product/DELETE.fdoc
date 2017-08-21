@@ -1,0 +1,33 @@
+title: "Remove a product"
+description: > 
+  <p>Authenticated endpoint that will delete a product.</p>
+docs_position: 4
+requestParameters:
+  type: object
+  additionalProperties: false
+  examples: ["ids"]
+  properties:
+    id:
+      type: string
+      example: "0X1kV7kuc3Nfh1U3qAHLhQ"
+    ids:
+      type: array
+      items:
+        minItems: 1
+        type: string
+        example: "0X1kV7kuc3Nfh1U3qAHLhQ"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "deleted"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym deleted
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,33 @@
+<% provide(:title, "Session Details") %>
+<h3>Session Details</h3>
+
+<% if flash[:notice] %>
+
+  <div class="callout success">
+    <%= flash[:notice] %>
+  </div>
+
+<% end %>
+
+<strong>Date:</strong> <%= @client_session.formatted_date %>
+<br />
+<strong>Time:</strong> <%= @client_session.time %>
+
+<br /><br />
+
+<% if @client_session.hours_before_session <= 0 %>
+
+    This appointment has expired.
+
+<% else %>
+
+    <% if (@client_session.confirmed? || @client_session.rejected?) && @client_session.hours_before_session < 24 %>
+      Appointment already confirmed/rejected. Please contact your PT to make arrangements.
+    <% else %>
+      <%= link_to "Confirm session", session_confirm_url(@client_session.api_token), method: :post, class: "button small-expand columns large-4" unless @client_session.confirmed? %>
+      <%= link_to "Reject session", session_reject_url(@client_session.api_token), method: :post, class: "button alert small-expand columns large-4" unless @client_session.rejected? %>
+    <% end %>
+
+    <br/>
+
+<% end %>

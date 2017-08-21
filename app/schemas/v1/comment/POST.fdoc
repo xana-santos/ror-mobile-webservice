@@ -1,0 +1,45 @@
+title: "Create a comment"
+description: > 
+  <p>Authenticated endpoint that will create a new comment.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["client_id", "comment"]
+  examples: ["client_id", "comment", "comment_date", "comment_time"]
+  additionalProperties: false
+  properties:
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+    comment:
+      type: string
+      example: "Awesome client. 10/10 would train again."
+    comment_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    comment_time:
+      type: string
+      format: time
+      example: "15:49"
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the comment with Positivflo
+      type: string
+      example: 8XsrV_LCHLbGQGcTK2LDGw
+    status:
+      description: The current status of the comment
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

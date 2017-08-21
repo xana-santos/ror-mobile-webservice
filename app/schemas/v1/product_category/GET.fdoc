@@ -1,0 +1,30 @@
+title: "Retrieve a product category"
+description: > 
+  <p>Authenticated endpoint that will retrieve a product categories' details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "X5Krd7G5jipKbU02tyoDdQ"
+responseParameters:
+  properties:
+    category:
+      type: string
+      example: "Weight Loss"
+    description:
+      type: string
+      example: "Weight Loss Products"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

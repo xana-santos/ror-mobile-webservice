@@ -1,0 +1,3 @@
+amazon:
+  host: 'email-smtp.us-east-1.amazonaws.com'
+main_host: https://positivflov2.herokuapp.com

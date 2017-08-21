@@ -1,0 +1,51 @@
+title: "Update an address"
+description: > 
+  <p>Authenticated endpoint that will update a address.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["id", "line_1", "suburb", "state", "postcode"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "5pLG8rK7MrTiLWF3kuVCxw"
+    type:
+      type: string
+      enum: ["shipping", "billing"]
+      example: "billing"
+    line_1:
+      type: string
+      example: 124 Fake Street
+    line_2:
+      type: string
+    suburb:
+      type: string
+      example: Pleasantown
+    state:
+      type: string
+      example: WA
+    postcode:
+      type: string
+      example: "4321"
+    main_address:
+      type: boolean
+      example: true
+responseParameters:
+  required: ["status"]
+  properties:
+    status:
+      description: The current status of the address
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: address updated
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

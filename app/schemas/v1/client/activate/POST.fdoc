@@ -1,0 +1,28 @@
+title: "Activate a client"
+description: > 
+  <p>Authenticated endpoint that will activate a previously deactivated client.</p>
+  <p>You may only activate deactive clients. If you attempt to activate an active client, an error will be raised.</p>
+docs_position: 9
+requestParameters:
+  type: object
+  additionalProperties: false
+  required: ["id"]
+  properties:
+    id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "activated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: client restored
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

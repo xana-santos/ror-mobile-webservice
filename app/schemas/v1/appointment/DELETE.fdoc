@@ -1,0 +1,33 @@
+title: "Remove an appointment"
+description: > 
+  <p>Authenticated endpoint that will delete an appointment.</p>
+docs_position: 5
+requestParameters:
+  type: object
+  additionalProperties: false
+  examples: ["ids"]
+  properties:
+    id:
+      type: string
+      example: "fPD2c4Pn48egmJniX_wwxw"
+    ids:
+      type: array
+      items:
+        minItems: 1
+        type: string
+        example: "fPD2c4Pn48egmJniX_wwxw"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "deleted"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym deleted
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

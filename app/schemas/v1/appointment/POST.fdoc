@@ -1,0 +1,95 @@
+title: "Create an appointment"
+description: >
+  <p>
+    Authenticated endpoint that will create a new appointment.
+    Creating a new appointment will also create a new session where session.date
+    = appointment.start_date and session.status = "invited".
+  </p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["trainer_id", "event_type"]
+  examples: ["id", trainer_id", "clients", "event_type", "event_note", "start_date", "start_time", "end_date", "end_time", "duration", "all_day_event", "session_rate", "repeat_after"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "8083413f-0ff4-4927-bf7b-aa770973a106"
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"
+    clients:
+      type: array
+      items:
+        type: string
+        example: "ofVwRSnAEdgGp88nVjrrcA"
+      description: "Required if event_type is appointment"
+    event_type:
+      type: string
+      enum: ["appointment", "own_time", "consultation", "complimentary_session"]
+      example: "appointment"
+    event_note:
+      type: string
+      example: Some event note
+    unconverted_note:
+      type: string
+      example: Note about why a prospective client is unconverted
+    sessions_per_week:
+      type: integer
+      example: Number of sessions per week (after a prospective client is converted)
+    client_value_per_week:
+      type: integer
+      example: The estimated cost of client value per week (after a prospective client is converted)
+    start_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    start_time:
+      type: string
+      format: time
+      example: "15:49"
+    end_date:
+      type: string
+      format: date
+      example: "2015-08-08"
+    end_time:
+      type: string
+      format: time
+      example: "16:49"
+    duration:
+      type: integer
+      description: "Duration in minutes"
+      example: 60
+    all_day_event:
+      type: boolean
+      example: false
+      default: false
+    session_rate:
+      type: number
+      example: 9999
+    repeat_after:
+      type: string
+      enum: ["day", "week", "fortnight", "month", "never"]
+      example: "month"
+      default: "never"
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the consultation with Positivflo
+      type: string
+      example: fPD2c4Pn48egmJniX_wwxw
+    status:
+      description: The current status of the consultation
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

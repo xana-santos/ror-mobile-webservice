@@ -1,0 +1,94 @@
+var api = {
+    
+  init: function(){
+  
+    api.setContentHeight();
+    $(window).resize(api.setContentHeight);
+  
+   (function (global) {
+
+       var closeToc = function() {
+           $(".tocify-wrapper").removeClass('open');
+           $("#nav-button").removeClass('open');
+       };
+
+       var makeToc = function() {
+           global.toc = $("#toc").tocify({
+               selectors: 'h1, h2',
+               extendPage: false,
+               theme: 'none',
+               smoothScroll: true,
+               showEffectSpeed: 0,
+               hideEffectSpeed: 180,
+               ignoreSelector: '.toc-ignore',
+               scrollHistory: true,
+               hashGenerator: function (text, element) {
+                   return element.prop('id');
+               }
+           }).data('toc-tocify');
+
+           $(".page-wrapper").click(closeToc);
+           $(".tocify-item").click(closeToc);
+        
+       };
+
+       $(makeToc);
+
+   })(window);
+     
+     
+   $(document).on("click", ".expand-link", function(e){
+  
+     var $parent = $(this).closest("tr");
+  
+     if($parent.data("name")){
+       $type = $parent.data("name"); 
+     }
+     else{
+       $type = $parent.data("nested"); 
+     }
+  
+     $(this).closest("table").find("tr.nested-" + $type).removeClass("hidden");
+  
+     $parent.find(".expand-link").hide();
+     $parent.find(".collapse-link").show();
+     
+     e.preventDefault();
+  
+   });
+
+   $(document).on("click", ".collapse-link", function(e){
+  
+     var $parent = $(this).closest("tr");
+  
+     if($parent.data("name")){
+       $type = $parent.data("name"); 
+     }
+     else{
+       $type = $parent.data("nested"); 
+     }
+     
+     $(this).closest("table").find("tr[class*='nested-" + $type + "']").each(function(){
+       $(this).addClass("hidden");
+       $(this).find(".collapse-link").hide();
+       $(this).find(".expand-link").show();
+     });
+  
+     $parent.find(".collapse-link").hide();
+     $parent.find(".expand-link").show();
+     
+     e.preventDefault();
+  
+   });
+
+   hljs.initHighlightingOnLoad();
+    
+  },
+  
+  setContentHeight: function(){
+    
+    $(".content").css("min-height", $(window).height());
+    
+  }
+  
+}

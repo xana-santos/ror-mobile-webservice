@@ -1,0 +1,10 @@
+<%= shared_path %>/log/*.log {
+    weekly
+    missingok
+    rotate 10
+    size 15M
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+}

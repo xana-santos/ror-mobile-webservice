@@ -1,0 +1,33 @@
+title: "Update an image"
+description: > 
+  <p>Authenticated endpoint that will update an image.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["id", "url"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "RL6ZK3Zr0QXsH3eeoAQ7ig"
+    url:
+      type: string
+      example: https://s3.amazonaws.com/example2.jpg  
+responseParameters:
+  required: ["status"]
+  properties:
+    status:
+      description: The current status of the image
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: image updated
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

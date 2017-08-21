@@ -1,0 +1,143 @@
+title: "Retrieve a client"
+description: >
+  <p>Authenticated endpoint that will retrieve a client's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  additionalProperties: false
+  required: ["id"]
+  properties:
+    id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+responseParameters:
+  properties:
+    id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+    created_at:
+      type: number
+      example: 1446203030
+    first_name:
+      type: string
+      example: Example
+    last_name:
+      type: string
+      example: User
+    email:
+      type: string
+      format: email
+      example: demo@client.com
+    birthdate:
+      type: string
+      format: date
+      example: "1985-12-25"
+    mobile:
+      type: string
+      example: "0400000000"
+    mobile_preferred:
+      type: boolean
+      default: false
+    office:
+      type: string
+      example: "12345678"
+    phone:
+      type: string
+      example: "12345678"
+    active:
+      type: boolean
+      default: true
+    client_details:
+      type: object
+      examples: ["start_date", "supplement_only", "prospect_only", "session_duration", "session_rate", "num_bulk_sessions"]
+      properties:
+        start_date:
+          type: string
+          format: date
+          example: "2015-12-25"
+        supplement_only:
+          type: boolean
+          example: false
+        prospect_only:
+          type: boolean
+          example: false
+        session_duration:
+          type: integer
+          example: 45
+        session_rate:
+          description: "Session rate in cents"
+          type: integer
+          example: 1000
+        num_bulk_sessions:
+          description: "Number of prepaid bulk sessions"
+          type: integer
+          example: 10
+    image:
+      type: object
+      properties:
+        id:
+          type: string
+          example: opM2lL9x3J7Hw4V5dPqiWw
+        url:
+          type: string
+          description: Location of the image
+          example: "https://s3.amazonaws.com/example.jpg"
+    card:
+      type: object
+      properties:
+        last_4:
+          type: string
+          example: "4242"
+    addresses:
+      type: array
+      items:
+        type: object
+        required: ["type", "line_1", "suburb", "state", "postcode", "main_address"]
+        properties:
+          type:
+            type: string
+            enum: ["shipping", "billing"]
+            example: "billing"
+          line_1:
+            type: string
+            example: 123 Fake Street
+          line_2:
+            type: string
+          suburb:
+            type: string
+            example: Pleasantville
+          state:
+            type: string
+            example: WA
+          postcode:
+            type: string
+            example: "1234"
+          main_address:
+            type: boolean
+            example: true
+    trainer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "2qFTErmCZAJzMmGG9TRYsQ"
+        first_name:
+          type: string
+          example: Example
+        last_name:
+          type: string
+          example: User
+        email:
+          type: string
+          format: email
+          example: demo@trainer.com
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

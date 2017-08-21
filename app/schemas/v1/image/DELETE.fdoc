@@ -1,0 +1,33 @@
+title: "Remove an image"
+description: > 
+  <p>Authenticated endpoint that will delete an image.</p>
+docs_position: 4
+requestParameters:
+  type: object
+  additionalProperties: false
+  examples: ["ids"]
+  properties:
+    id:
+      type: string
+      example: "RL6ZK3Zr0QXsH3eeoAQ7ig"
+    ids:
+      type: array
+      items:
+        minItems: 1
+        type: string
+        example: "RL6ZK3Zr0QXsH3eeoAQ7ig"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "deleted"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,101 @@
+title: "List products"
+description: "<p>Authenticated endpoint that returns products.</p>"
+docs_position: 6
+requestParameters:
+  type: object
+  examples: ["limit", "offset"]
+  additionalProperties: false
+  properties:
+    limit:
+      type: ["integer", "string"]
+      minimum: 10
+      maximum: 100
+      default: 25
+      description: The number of records returned
+    offset:
+      type: ["integer", "string"]
+      default: 0
+      description: The offset of the first record returned
+    timestamp:
+      type: ["integer", "string"]
+      description: Return records created/updated after this time
+    include_deleted:
+      type: ["boolean", "string"]
+      default: false
+responseParameters:
+  type: object
+  properties:
+    products:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 0X1kV7kuc3Nfh1U3qAHLhQ
+          title:
+            type: string
+            example: "One Fabulous Product"
+          description:
+            type: string
+            example: "Buy it before they run out!"
+          product_id:
+            type: string
+            example: "HF-4459"
+          unit_price:
+            type: number
+            example: 3000
+            description: "Unit price in cents"
+          unit_type:
+            type: string
+            example: "Some type"
+          categories:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "X5Krd7G5jipKbU02tyoDdQ"
+                category:
+                  type: string
+                  example: "Weight Loss"
+                description: "Weight Loss Products"
+          product_image:
+            type: string
+            description: Location of the image
+            example: "https://s3.amazonaws.com/example.jpg"
+          status:
+            type: string
+            enum: ["published", "unpublished"]
+            example: "published"
+          out_of_stock:
+            type: boolean
+            example: false
+            default: false
+          cost:
+            type: number
+            example: 3000
+    meta:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        offset:
+          type: integer
+          example: 0
+        total:
+          description: Total number of products (excluding limit and offsets)
+          type: integer
+          example: 1
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Accounts listed
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

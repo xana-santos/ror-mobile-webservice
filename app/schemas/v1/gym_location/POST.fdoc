@@ -1,0 +1,58 @@
+title: "Add gym location"
+description: > 
+  <p>Authenticated endpoint that will add a gym location.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["gym_id", "name", "address"]
+  examples: ["gym_id", "phone_number", "name", "address"]
+  additionalProperties: false
+  properties:
+    gym_id:
+      type: string
+      example: "z4dWoqSOoRoHIvaQfkzoKQ"
+    name:
+      type: string
+      example: "Queen St"
+    phone_number:
+      type: string
+      example: "12345678"
+    address:
+      type: object
+      examples: ["line_1", "suburb", "state", "postcode"]
+      properties:
+        line_1:
+          type: string
+          example: 123 Fake Street
+        line_2:
+          type: string
+        suburb:
+          type: string
+          example: Pleasantville
+        state:
+          type: string
+          example: WA
+        postcode:
+          type: string
+          example: "1234"  
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the gym with Positivflo
+      type: string
+      example: aJYHH3NogJlF_Kaph0Qw8g
+    status:
+      description: The current status of the gym
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

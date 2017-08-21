@@ -1,0 +1,4 @@
+<%= form_for :dump, :url=>{:action=>"import_csv"}, :html => { :multipart => true } do |f| %>
+  <%= f.file_field :all, label:"All Referrals" %>
+  <%= submit_tag 'Submit' %>
+<% end %>

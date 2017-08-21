@@ -1,0 +1,19 @@
+<% if flash[:notice] %>
+  
+  <div class="callout success">
+    <%= flash[:notice] %>
+  </div>
+  
+<% end %>
+
+<% if flash[:alert] %>
+  
+  <div class="callout alert">
+    <%= flash[:alert] %>
+  </div>
+  
+<% end %>
+
+<%= render "pages/client_terms" %>
+
+<%= link_to "Accept Terms", client_terms_accept_path(@client.api_token), method: :post, class: "button small-expand columns large-4" unless @client.terms_accepted %>

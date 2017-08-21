@@ -1,0 +1,48 @@
+title: "Retrieve address"
+description: > 
+  <p>Authenticated endpoint that will retrieve an address's details.</p>
+docs_position: 2
+requestParameters:
+  type: object
+  required: ["id"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "5pLG8rK7MrTiLWF3kuVCxw"
+responseParameters:
+  required: ["id", "name", "address"]
+  properties:
+    id:
+      type: string
+      example: "5pLG8rK7MrTiLWF3kuVCxw"
+    type:
+      type: string
+      example: "shipping"
+    line_1:
+      type: string
+      example: 123 Fake Street
+    line_2:
+      type: string
+    suburb:
+      type: string
+      example: Pleasantville
+    state:
+      type: string
+      example: WA
+    postcode:
+      type: string
+      example: "1234"
+    main_address:
+      type: boolean
+      example: true  
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: address retrieved
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

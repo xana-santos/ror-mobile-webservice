@@ -1,0 +1,55 @@
+title: "Add address to client"
+description: > 
+  <p>Authenticated endpoint that will add an address to a client.</p>
+  <p>Note that a client without a main address will use it's first address as the default. A client can only have one address marked as main.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["client_id", "type", "line_1", "suburb", "state", "postcode", "main_address"]
+  additionalProperties: false
+  properties:
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+    type:
+      type: string
+      enum: ["shipping", "billing"]
+      example: "billing"
+    line_1:
+      type: string
+      example: 123 Fake Street
+    line_2:
+      type: string
+    suburb:
+      type: string
+      example: Pleasantville
+    state:
+      type: string
+      example: WA
+    postcode:
+      type: string
+      example: "1234"
+    main_address:
+      type: boolean
+      example: true   
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the address with Positivflo
+      type: string
+      example: 5pLG8rK7MrTiLWF3kuVCxw
+    status:
+      description: The current status of the address
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: address created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

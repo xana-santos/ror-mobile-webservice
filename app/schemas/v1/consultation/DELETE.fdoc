@@ -1,0 +1,33 @@
+title: "Remove a consultation"
+description: > 
+  <p>Authenticated endpoint that will delete a consultation.</p>
+docs_position: 4
+requestParameters:
+  type: object
+  additionalProperties: false
+  examples: ["ids"]
+  properties:
+    id:
+      type: string
+      example: "PKpxLV2YoxKDumGAJ-ipvA"
+    ids:
+      type: array
+      items:
+        minItems: 1
+        type: string
+        example: "PKpxLV2YoxKDumGAJ-ipvA"
+responseParameters:
+  properties:
+    status:
+      type: string
+      example: "deleted"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym deleted
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

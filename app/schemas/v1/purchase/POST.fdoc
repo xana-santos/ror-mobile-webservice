@@ -1,0 +1,50 @@
+title: "Create a purchase"
+description: > 
+  <p>Authenticated endpoint that will create a new purchase.</p>
+docs_position: 1
+requestParameters:
+  type: object
+  required: ["trainer_id", "client_id", "products"]
+  additionalProperties: false
+  properties:
+    client_id:
+      type: string
+      example: "ofVwRSnAEdgGp88nVjrrcA"
+    trainer_id:
+      type: string
+      example: "2qFTErmCZAJzMmGG9TRYsQ"  
+    products:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required: ["id", "quantity"]
+        additionalProperties: false
+        properties:
+          id:
+            type: string
+            example: 0X1kV7kuc3Nfh1U3qAHLhQ
+          quantity:
+            type: number
+            example: 5
+responseParameters:
+  required: ["id", "status"]
+  properties:
+    id:
+      description: Unique ID to identify the purchase with Positivflo
+      type: string
+      example: 13yRMtPSFC6TKxFeMH_WDA
+    status:
+      description: The current status of the purchase
+      type: string
+      example: "created"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Account created
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

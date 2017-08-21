@@ -1,0 +1,54 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+
+user:
+  email:
+    not_found:
+      title: 'Login Failed'
+      description: 'Sorry, the email you provided is not registered. Please try again or create a new account'
+    invalid:
+      title: 'Email Already Registered'
+      description: 'Email is mandatory to login'
+    found:
+      title: 'Email found in system'
+      description: 'Please login in with your credentials'
+  password:
+    title: 'Password Error!!'
+    description: "You have entered an incorrect password"
+  auth_token:
+    title: 'Problem with Authentication Token'
+    description: 'You have entered an invalid authentication token'
+  log_out:
+    title: 'Log out'
+    description: 'Hope you have good time with p-flo App Good Bye!'
+  stripe:
+    title: 'Stripe Error'
+    description: 'You are not connected to Stripe Yet! Please connect first to proceed'
+trainer:
+  profile:
+    title: 'No profile Found'
+    description: 'Please check your profile or create new account with mandatory fields'
+  invalid:
+    title: 'Invalid params'
+    description: 'please add valid trainer expenses and scheduled params  before updating'
+  un_authentic:
+    title: 'Authentication Problem'
+    description: 'You are not allowed to deactivate this user'
+  authentic:
+    title: 'Client Deactivated'
+    description: 'You have been deactivate the client'
+client:
+  not_found:
+    title: 'No Client'
+    description: 'No client associated with you Sir!'
+  invalid:
+    title: 'Incomplete Profile'
+    description: 'Please complete you trainer profile before continue to add/update clients'
+  found:
+      title: 'Email found'
+      description: 'This email has an active login, and is affiliated to some trainer'
+active_record:
+  record_not_found: "Record not found"
+twilio:
+  exception: "Some error occured while sending message"

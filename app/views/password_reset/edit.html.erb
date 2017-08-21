@@ -1,0 +1,28 @@
+<% provide(:title, "Reset Password") %>
+<h3>Reset Password</h3>
+
+<% if flash[:alert] %>
+
+  <div class="callout alert">
+    <%= flash[:alert] %>
+  </div>
+
+<% end %>
+
+<%= form_for @user, as: :user, url: change_password_path(@user.reset_token) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :password, "New Password" %>
+    <%= f.password_field :password, :autofocus => true, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button "Update", class: "button small-expand columns large-4", type: :submit %>
+  </div>
+								  
+<% end %>

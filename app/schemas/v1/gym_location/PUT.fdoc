@@ -1,0 +1,54 @@
+title: "Update a gym location"
+description: > 
+  <p>Authenticated endpoint that will update a gym location.</p>
+docs_position: 3
+requestParameters:
+  type: object
+  required: ["id"]
+  examples: ["id", "name"]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      example: "aJYHH3NogJlF_Kaph0Qw8g"
+    name:
+      type: string
+      example: "Queen St 2"
+    phone_number:
+      type: string
+      example: "12345678"
+    address:
+      type: object
+      examples: ["line_1", "suburb", "state", "postcode"]
+      properties:
+        line_1:
+          type: string
+          example: 123 Fake Street
+        line_2:
+          type: string
+        suburb:
+          type: string
+          example: Pleasantville
+        state:
+          type: string
+          example: WA
+        postcode:
+          type: string
+          example: "1234"  
+responseParameters:
+  required: ["status"]
+  properties:
+    status:
+      description: The current status of the gym
+      type: string
+      example: "updated"
+responseCodes:
+  - status: 200 OK
+    successful: yes
+    description: Gym updated
+  - status: 400 Bad Request
+    successful: no
+    description: Indicates incorrect parameters. Please check the request and try again.
+  - status: 500 Server Error
+    successful: no
+    description: "If this issue persists, contact us."

@@ -1,0 +1,71 @@
+<table class="row">
+  <tr>
+    <td class="wrapper last">
+
+      <table class="twelve columns">
+        <tr>
+          <td>
+            <h3>Hi <%= @client.first_name %>,</h3>
+            <br />
+            <p>
+              Thank you for your recent payment with Positiv Flo. You can find details of your purchase below.
+            <p>
+              <br />
+              <table>
+                <tr>
+                  <td class="wrapper last">
+                    <table class="twelve columns">
+                      <tr>
+                        <td class="ten sub-columns"><strong>Description</strong></td>
+                        <td class="two sub-columns right"><strong>Total</strong></td>
+                      </tr>
+                    </table>  
+                  </td>  
+                </tr>
+                <% @invoice.invoice_items_without_shipping.each do |item| %>
+                  <% if item.record_type == "ClientSession" %>
+                  <tr>
+                    <td class="wrapper last">
+                      <table class="twelve columns">
+                        <tr>
+                          <td class="ten sub-columns">
+                            Session with <%= @trainer.name %> on <%= item.try(:record).try(:date).try(:strftime, "%d/%m/%Y") %> at <%= item.try(:record).try(:time) %>
+                          </td>
+                          <td class="two sub-columns right">
+                            <%= number_to_currency(item.total_dollars) %>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>    
+                  </tr>
+                  <% end %>
+                <% end %>
+                <tr>
+                  <td class="wrapper last">
+                    <table class="twelve columns">
+                      <tr>
+                        <td class="ten sub-columns">
+                          
+                        </td>
+                        <td class="two sub-columns right"><h6 class="right"><%= number_to_currency(@invoice.total_dollars) %></h6></td>
+                      </tr>
+                    </table>
+                  </td>        
+                </tr>
+              </table>
+              <br />
+            </p>
+            <p>
+              Cheers!
+            </p>
+            <p>
+              <strong>The Positiv Flo Team</strong>
+            </p>
+          </td>
+          <td class="expander"></td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>

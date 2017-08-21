@@ -1,0 +1,9 @@
+<% fetch(:monit_delayed_job_workers).times do |i| %>
+check process delayed_job_<%=i%> with pidfile <%= shared_path %>/tmp/pids/delayed_job.<%=i%>.pid 
+  start program = "/bin/sh -c 'cd <%=current_path%>; HOME=/home/ubuntu RAILS_ENV=production bin/delayed_job -i <%=i%> start'" with timeout 60 seconds
+  stop program = "/bin/sh -c 'cd <%=current_path%>; HOME=/home/ubuntu RAILS_ENV=production bin/delayed_job -i <%=i%> stop'" with timeout 60 seconds
+  if totalmem > 200.0 MB for 3 cycles then restart 
+  if cpu usage > 95% for 3 cycles then restart
+  if 5 restarts within 5 cycles then alert  
+  if 10 restarts within 10 cycles then timeout
+<% end %>
